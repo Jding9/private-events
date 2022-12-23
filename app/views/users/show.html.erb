@@ -2,3 +2,21 @@
 <p>The user page we are currently on is <%= @user.name %></p>
 
 <h1>These are the user's attended events</h1>
+
+    <h2>Past Events</h2>
+    <% @user.attended_events.each do |event| %>
+        <% if event.event_date <= Date.today %>
+        <ul>
+            <%= event.event_name %> <%= event.event_date %>
+        </ul>
+        <% end %>
+    <% end %>
+
+    <h2>Future Events</h2>
+    <% @user.attended_events.each do |event| %>
+        <% if event.event_date > Date.today %>
+        <ul>
+            <%= event.event_name %> <%= event.event_date %>
+        </ul>
+        <% end %>
+    <% end %>

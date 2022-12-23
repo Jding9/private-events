@@ -1,11 +1,26 @@
 <h1>These are the available events!</h1>
 
+
+<h2>Past Events</h2>
 <ul>
-    <% @events.each do |event| %>
+    <% @events.past_event.each do |event| %>
         <li>
             <%= link_to event.event_name, event %>
+            <%= event.event_date %>
         </li>
     <% end %>
 </ul>
 
-<%= link_to "Create a new event", new_event_path %>
+<h2>Upcoming Events</h2>
+<ul>
+    <% @events.upcoming_event.each do |event| %>
+        <li>
+            <%= link_to event.event_name, event %>
+            <%= event.event_date %>
+        </li>
+    <% end %>
+</ul>
+
+<% if user_signed_in? %>
+    <%= link_to "Create a new event", new_event_path %>
+<% end %>

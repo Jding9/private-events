@@ -11,7 +11,9 @@
     </ul>
 <% end %>
 
-<h2>Attend this event?</h2>
 <% if !@event.attendees.include?(current_user) %>
+    <h2>Attend this event?</h2>
     <%= button_to 'Attend', attend_event_path(@event.id) %>
+<% elsif @event.attendees.include?(current_user) %>
+    <p>You have registered to attend this event.</p>
 <% end %>

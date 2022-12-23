@@ -1,0 +1,30 @@
+<h1>New Event</h1> 
+
+<% if user_signed_in? %>
+
+<%= form_with model: @event do |form| %>
+        <%= form.hidden_field :created_at, value: DateTime.now %>
+        <%= form.hidden_field :updated_at, value: DateTime.now %>
+    <div>
+        <%= form.label :event_name %><br>
+        <%= form.text_field :event_name %>
+    </div>
+    <br>
+    <div>
+        <%= form.label :event_date %><br>
+        <%= form.date_field :event_date %>
+    </div>
+    <br>
+    <div>
+        <%= form.submit "Create New Event" %><br>
+    </div>
+
+    <%= @event.errors.full_messages.first if @event.errors.any? %>
+
+<% end %>
+
+<% else %>
+
+<p> Please Sign in First </p>
+
+<% end %>

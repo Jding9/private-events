@@ -1,0 +1,17 @@
+<h1>This is the Event</h1>
+
+<p>Name of the event: <%= @event.event_name %></p>
+<p>Date of the event: <%= @event.event_date %></p>
+<p>Creator of the event: <%= @event.creator.name %></p>
+
+<h2>Attendees</h2>
+<% @event.attendees.each do |attendee| %>
+    <ul>
+        <%= attendee.name %>
+    </ul>
+<% end %>
+
+<h2>Attend this event?</h2>
+<% if !@event.attendees.include?(current_user) %>
+    <%= button_to 'Attend', attend_event_path(@event.id) %>
+<% end %>
